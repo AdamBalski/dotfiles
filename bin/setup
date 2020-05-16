@@ -1,0 +1,95 @@
+#/bin/zsh
+
+echo "google-chrome\n\n"
+
+sudo wget -c "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo rm google-chrome-stable_current_amd64.deb
+
+sudo apt update
+
+echo "zsh\n\n"
+
+sudo apt install zsh
+sudo chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
+
+echo "oh-my-zsh\n\n"
+
+sudo sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "guake\n\n"
+
+sudo apt install guake
+sudo apt update
+
+echo "snap\n\n"
+
+sudo apt install snapd
+sudo apt update
+
+echo "intellij-idea"
+
+sudo snap install intellij-idea-community --classic -yy
+
+echo "vscode\n\n"
+
+sudo snap install code --classic
+
+
+echo "pycharm\n\n"
+
+sudo snap install pycharm-educational --classic
+
+echo "wine\n\n"
+
+sudo dpkg --add-architecture i386
+sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
+sudo apt update
+sudo apt install --install-recommends winehq-stable
+sudo apt update
+
+echo "git\n\n"
+
+sudo apt install git
+sudo apt update
+
+echo "disord\n\n"
+
+sudo wget -c "https://dl.discordapp.net/apps/linux/0.0.10/discord-0.0.10.deb"
+sudo dpkg -i discord-0.0.10.deb
+sudo rm discord-0.0.10.deb
+
+echo "spotify\n\n"
+
+sudo snap install spotify
+
+echo "kolourpaint\n\n"
+
+sudo apt install kolourpaint
+sudo apt update
+
+echo "hplip\n\n"
+
+sudo wget -c "https://nchc.dl.sourceforge.net/project/hplip/hplip/3.20.5/hplip-3.20.5.run"
+sudo chmod +x hplip-3.20.5.run
+sudo ./hplip-3.20.5.run
+sudo rm hplip-3.20.5.run
+
+echo "postgresql\n\n"
+
+sudo apt install postgresql-12
+sudo apt update
+
+echo "calibre\n\n"
+
+sudo apt install calibre
+sudo apt update
+
+echo "cleaning-up & upgrading\n\n"
+
+sudo apt upgrade
+sudo apt dist-upgrade
+sudo apt full-upgrade
+sudo apt autoremove
+sudo apt clean
