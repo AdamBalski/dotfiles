@@ -54,6 +54,8 @@ filetype plugin indent on    " required
 " Usual
 set mouse=a
 set autoindent
+set shiftwidth=4
+set tabstop=4
 syntax on
 set number
 set encoding=utf-8
