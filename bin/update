@@ -1,9 +1,0 @@
-#!/bin/zsh
-
-sudo apt update -yy
-sudo apt dist-upgrade -yy
-sudo apt upgrade -yy
-sudo apt autoremove -yy
-sudo apt clean -yy
-
-exit

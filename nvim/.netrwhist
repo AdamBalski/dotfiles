@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/adambalski/.cache'
+let g:netrw_dirhist_5='/home/adambalski'
+let g:netrw_dirhist_4='/home/adambalski/Downloads'
+let g:netrw_dirhist_3='/home/adambalski'
+let g:netrw_dirhist_2='/home/adambalski/.config/nvim'
+let g:netrw_dirhist_1='/home/adambalski/IdeaProjects/messages-frontend/src'
+let g:netrw_dirhist_0='/home/adambalski/.config/nvim/plugged/lightline.vim/autoload/lightline/colorscheme'
+let g:netrw_dirhist_9='/home/adambalski/.config/nvim/plugged/lightline.vim/autoload/lightline'
+let g:netrw_dirhist_8='/home/adambalski/.config/nvim/plugged/lightline.vim/autoload/lightline/colorscheme'
+let g:netrw_dirhist_7='/home/adambalski/.config/nvim'

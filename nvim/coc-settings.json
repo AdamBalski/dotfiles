@@ -1,0 +1,10 @@
+{
+  "suggest.noselect": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "typescript",
+    "javascript",
+    "vue"
+  ],
+  "python.jediEnabled": true
+}
