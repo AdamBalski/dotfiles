@@ -81,4 +81,6 @@ let g:coc_global_extensions = [
   \ 'coc-vetur',
   \ 'coc-html',
   \ 'coc-python',
+  \ 'coc-pyright',
+  \ 'coc-vimtex',
   \ ]

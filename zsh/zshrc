@@ -40,8 +40,8 @@ SAVEHIST=10000
 alias ccat="pygmentize -g -O style='native'"
 
 # ls
-alias l="ls -la"
-alias la="ls -a"
+alias l="ls -lA"
+alias la="ls -A"
 alias ll="ls -l"
 
 # Python
@@ -55,7 +55,7 @@ alias gita="git add"
 alias gitaa="git add ."
 alias gitl="git --no-pager log --oneline -n 20"   
 alias gitm="git merge"
-alias gitcheck="git checkout"
+alias gitch="git checkout"
 alias gitb="git branch"
 alias gitf="git fetch"
 alias gitpu="git push"

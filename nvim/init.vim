@@ -11,6 +11,9 @@
 call plug#begin()
 " <plugins>
 
+" Vimtex
+Plug 'lervag/vimtex'
+
 " vim-css-color
 Plug 'ap/vim-css-color'
 
@@ -70,8 +73,20 @@ set clipboard+=unnamedplus
 set shiftwidth=4
 set tabstop=4
 set number relativenumber
-set ignorecase " "\C" after search to make case sensitive
+set ignorecase " "\C" after search to make it case sensitive
 colorscheme darcula
+
+""" Automatically sources init.vim after saving
+autocmd BufWritePost init.vim :so %
+
+""" Saves views (folds)
+autocmd BufWinLeave * mkview
+autocmd BufWinEnter * silent! call LoadView()
+function LoadView()
+	loadview
+	normal gg
+	normal 0
+endfun
 
 """ Splits
 nnoremap <C-J> <C-W>j
@@ -84,11 +99,16 @@ set splitright
 
 """ Keybindings
 " F1 saves (you can save in read-only mode)
-map <F2> :w !sudo tee % > /dev/null<CR> 
+map <F1> :w !sudo tee % > /dev/null<CR> 
 " F8 runs currently saved version of opened file in python3
-map <F5> :!clear; sudo python3 %<CR>
+map <F5> :!python3 %<CR>
 
 """ Plugins' settings
+" Vimtex
+let g:tex_flavor= 'latex'
+autocmd BufWritePost *.tex :!pdftex %
+autocmd BufWritePost *.latex !pdflatex % ; rm %:r.aux %:r.log
+
 " Emmet
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,scss EmmetInstall
@@ -130,7 +150,10 @@ source /home/adambalski/.config/nvim/init.coc.vim
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " Opens on <C-d>
-map <C-d> :NERDTreeToggle<CR>
+map <C-s> :NERDTreeToggle<CR>
+" Show line numbers
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
 
 " Nerd Commenter
 filetype plugin on
