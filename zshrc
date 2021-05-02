@@ -1,5 +1,11 @@
+#            _              
+#    _______| |__  _ __ ___ 
+#   |_  / __| '_ \| '__/ __|
+#  _ / /\__ \ | | | | | (__ 
+# (_)___|___/_| |_|_|  \___|
+
 # Path to your oh-my-zsh installation.
-export ZSH="/home/adambalski/.oh-my-zsh"
+export ZSH="/home/adam/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -23,7 +29,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux vi-mode)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,6 +74,7 @@ alias gitbl="git blame"
 # Vim
 alias vim="nvim"
 alias vi="nvim"
+alias v="nvim"
 
 # Docker
 alias docker="sudo docker"
@@ -87,8 +94,5 @@ alias -s {html,css,js,py,java}=vim
 
 ### Exports
 
-# $JAVA_HOME
-export JAVA_HOME=/home/adambalski/.jdks/openjdk-14.0.2
-
-# $PATH           ########### APPS ########## #### MY BINS ######## #### JAVA ##### ###################### NODE #######################
-export PATH=$PATH:/home/adambalski/.apps/bin/:/home/adambalski/bin/:$JAVA_HOME/bin/:/home/adambalski/.apps/node-v12.18.3-linux-x64/bin/
+# $PATH           #### MY BINS ########
+export PATH=$PATH:/home/adam/.apps/bin/:/home/adam/.apps/node-v14.16.1-linux-x64/bin:/home/adam/.jdks/openjdk-15.0.2/bin

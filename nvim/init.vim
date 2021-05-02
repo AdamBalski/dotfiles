@@ -39,7 +39,7 @@ Plug 'doums/darcula'
 Plug 'haya14busa/incsearch.vim'
 
 " Lightline
- Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 
 " Yet Another TypeScript Syntax
 Plug 'HerringtonDarkholme/yats.vim'
@@ -69,6 +69,7 @@ call plug#end()
 """ General
 set mouse=a
 set termguicolors
+set linebreak
 set clipboard+=unnamedplus
 set shiftwidth=4
 set tabstop=4
@@ -143,7 +144,7 @@ let g:lightline = { 'colorscheme': 'materia' }
 set noshowmode " Disabled showing mode by nvim
 
 " Conquer of Completion
-source /home/adambalski/.config/nvim/init.coc.vim
+source /home/adam/.config/nvim/init.coc.vim
 
 " NerdTree
 " Opens automatically when vim is opened on directory

@@ -6,7 +6,7 @@
     "javascript",
     "vue"
   ],
-  "python.jediEnabled": true,
+  "python.jediEnabled": false,
   "python.linting.enabled": false,
   "diagnostic.checkCurrentLine": true
 }

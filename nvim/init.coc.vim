@@ -1,3 +1,10 @@
+"  _       _ _                         _           
+" (_)_ __ (_) |_   ___ ___   _____   _(_)_ __ ___  
+" | | '_ \| | __| / __/ _ \ / __\ \ / / | '_ ` _ \ 
+" | | | | | | |_ | (_| (_) | (__ \ V /| | | | | | |
+" |_|_| |_|_|\__(_)___\___/ \___(_)_/ |_|_| |_| |_|
+                                                 
+
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -80,7 +87,6 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-vetur',
   \ 'coc-html',
-  \ 'coc-python',
   \ 'coc-pyright',
   \ 'coc-vimtex',
   \ ]
