@@ -10,7 +10,7 @@ sudo echo "Installing dotfiles for the user $USER"
 read -p "Where do you want the dotfiles to be?" gitpath
 
 echo "0. updating system"
-sudo apt install && sudo apt upgrade
+sudo apt update && sudo apt upgrade
 
 echo "1.  git, curl, wget"
 sudo apt install git curl wget
