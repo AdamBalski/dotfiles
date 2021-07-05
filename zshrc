@@ -1,9 +1,3 @@
-#            _              
-#    _______| |__  _ __ ___ 
-#   |_  / __| '_ \| '__/ __|
-#  _ / /\__ \ | | | | | (__ 
-# (_)___|___/_| |_|_|  \___|
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/adam/.oh-my-zsh"
 
@@ -74,10 +68,6 @@ alias gitbl="git blame"
 # Vim
 alias vim="nvim"
 alias vi="nvim"
-alias v="nvim"
-
-# Docker
-alias docker="sudo docker"
 
 # Doesn't match any category
 alias processes="ps -aux | grep"
@@ -95,4 +85,6 @@ alias -s {html,css,js,py,java}=vim
 ### Exports
 
 # $PATH           #### MY BINS ########
-export PATH=$PATH:/home/adam/.apps/bin/:/home/adam/.apps/node-v14.16.1-linux-x64/bin:/home/adam/.jdks/openjdk-15.0.2/bin
+brewpath=/home/linuxbrew/.linuxbrew/bin
+userbins=/home/$user/.apps/bin:/home/$user/bin
+export PATH=$PATH:$brewpath:$userbins

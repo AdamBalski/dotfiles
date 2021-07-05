@@ -3,13 +3,25 @@
 "  _  _ __   _ | |_    __   __ _  _ __ ___  
 " | || '_ \ | || __|   \ \ / /| || '_ ` _ \ 
 " | || | | || || |_  _  \ V / | || | | | | |
-" |_||_| |_||_| \__|(_)  \_/  |_||_| |_| |_|                                         
+" |_||_| |_||_| \__|(_)  \_/  |_||_| |_| |_| 
 
 " Before using install vim-plug
 
 " <vim-plug>
 call plug#begin()
 " <plugins>
+
+" moll/vim-bbye/
+Plug 'moll/vim-bbye/'
+
+" tpope/vim-fugitive
+Plug 'tpope/vim-fugitive'
+
+" lambdalisue/suda.vim
+Plug 'lambdalisue/suda.vim'
+
+" ctrlpvim/ctrlp.vim
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Vimtex
 Plug 'lervag/vimtex'
@@ -62,6 +74,9 @@ Plug 'junegunn/goyo.vim'
 " HardTime
 Plug 'takac/vim-hardtime'
 
+" ryanoasis/devicons
+Plug 'ryanoasis/vim-devicons' 
+
 " </plugins>
 call plug#end()
 " </vim-plug>
@@ -73,8 +88,16 @@ set linebreak
 set clipboard+=unnamedplus
 set shiftwidth=4
 set tabstop=4
+set expandtab
 set number relativenumber
 set ignorecase " "\C" after search to make it case sensitive
+set nobackup
+set writebackup
+set undodir=~/.local/share/nvim/undodir
+set undofile
+set scrolloff=8
+set colorcolumn=100
+set guifont=JetBrains\ Mono\ Medium\ Nerd\ Font\ Complete\ Mono\ 2137
 colorscheme darcula
 
 """ Automatically sources init.vim after saving
@@ -100,9 +123,16 @@ set splitright
 
 """ Keybindings
 " F1 saves (you can save in read-only mode)
-map <F1> :w !sudo tee % > /dev/null<CR> 
-" F8 runs currently saved version of opened file in python3
+map <F1> :SudaWrite %<CR>
+" F5 runs currently saved version of opened file in python3
 map <F5> :!python3 %<CR>
+" Go to left tab
+nmap <A-h> :tabprevious<CR>
+imap <A-h> <ESC>:tabprevious<CR>
+" Go to right tab
+nmap <A-l> :tabnext<CR>
+imap <A-l> <ESC>:tabnext<CR>
+
 
 """ Plugins' settings
 " Vimtex
@@ -110,9 +140,11 @@ let g:tex_flavor= 'latex'
 autocmd BufWritePost *.tex :!pdftex %
 autocmd BufWritePost *.latex !pdflatex % ; rm %:r.aux %:r.log
 
+" Bbye
+nmap <C-w> :Bdelete<CR>
+
 " Emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,scss EmmetInstall
+let g:user_emmet_install_global = 1
 
 " CloseTag
 let g:closetag_filetypes = 'html,xml'
@@ -147,14 +179,14 @@ set noshowmode " Disabled showing mode by nvim
 source /home/adam/.config/nvim/init.coc.vim
 
 " NerdTree
-" Opens automatically when vim is opened on directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-" Opens on <C-d>
+" Opens on <C-s>
 map <C-s> :NERDTreeToggle<CR>
 " Show line numbers
 let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal relativenumber
+" " Opens automatically when vim is opened on directory
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 " Nerd Commenter
 filetype plugin on

@@ -1,10 +1,3 @@
-"  _       _ _                         _           
-" (_)_ __ (_) |_   ___ ___   _____   _(_)_ __ ___  
-" | | '_ \| | __| / __/ _ \ / __\ \ / / | '_ ` _ \ 
-" | | | | | | |_ | (_| (_) | (__ \ V /| | | | | | |
-" |_|_| |_|_|\__(_)___\___/ \___(_)_/ |_|_| |_| |_|
-                                                 
-
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -12,8 +5,8 @@ set hidden
 set nobackup
 set nowritebackup
 
-" Give more space for displaying messages.
-set cmdheight=2
+" Space for displaying messages.
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -39,6 +32,9 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -87,6 +83,7 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-vetur',
   \ 'coc-html',
+  \ 'coc-python',
   \ 'coc-pyright',
   \ 'coc-vimtex',
   \ ]
