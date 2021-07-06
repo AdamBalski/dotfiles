@@ -8,7 +8,7 @@
 " Before using install vim-plug
 
 " <vim-plug>
-call plug#begin()
+call plug#begin('~/.config/nvim')
 " <plugins>
 
 " moll/vim-bbye/

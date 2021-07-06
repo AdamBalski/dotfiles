@@ -25,62 +25,62 @@ echo "What is your email in git?"
 read email
 git config --global user.email "$email"
 
-mkdir -p $path
-git clone https://www.github.com/AdamBalski/dotfiles.git "$path/dotfiles"
+mkdir -p $gitpath
+git clone https://www.github.com/AdamBalski/dotfiles.git "$gitpath/dotfiles"
 
 echo "2.  zsh" 
 sudo apt install zsh
-chsh -s /binzsh
-ln -sf "$path/dotfiles/zshrc" ~/.zshrc 
+chsh -s /bin/zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+ln -sf "$gitpath/dotfiles/zshrc" ~/.zshrc 
 
 echo "3.  nvim"
 sudo apt install neovim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-ln -sf "$path/dotfiles/nvim/init.vim"           ~/.config/nvim/init.vim
-ln -sf "$path/dotfiles/nvim/init.coc.vim"       ~/.config/nvim/init.coc.vim
-ln -sf "$path/dotfiles/nvim/coc-settings.json"  ~/.config/nvim/coc-settings.json
+mkdir -p ~/.config/nvim/plugged
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+ln -sf "$gitpath/dotfiles/nvim/init.vim"           ~/.config/nvim/init.vim
+ln -sf "$gitpath/dotfiles/nvim/init.coc.vim"       ~/.config/nvim/init.coc.vim
+ln -sf "$gitpath/dotfiles/nvim/coc-settings.json"  ~/.config/nvim/coc-settings.json
 
 echo "4. guake"
 sudo apt install guake
-echo "5.  spotify"
-sudo apt install spotify-client
-echo "6.  chrome"
+echo "4.  chrome"
 sudo apt install google-chrome-stable
-echo "7.  kolourpaint"
+echo "5.  kolourpaint"
 sudo apt install kolourpaint
-echo "8.  gimp"
+echo "6.  gimp"
 sudo apt install gimp
-echo "9.  joplin"
+echo "7.  joplin"
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
-echo "10. libreoffice suit"
+echo "8. libreoffice suit"
 sudo apt install libreoffice
-echo "11. discord"
-sudo apt install discord
-echo "12. sl"
+echo "9. sl"
 sudo apt install sl
-echo "13. htop"
+echo "10. htop"
 sudo apt install htop
-echo "14. visual studio code"
+echo "11. visual studio code"
 sudo apt install code
-echo "15. calibre"
+echo "12. calibre"
 sudo apt install calibre
-echo "16. steam"
+echo "12. steam"
 sudo apt install steam
-
-echo "17. linuxbrew"
+echo "13. tmux"
+sudo apt install tmux
+echo "14. linuxbrew"
 
 sudo apt-get install build-essential procps curl file git
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 
-echo "18. docker via linuxbrew"
+echo "15. docker via linuxbrew"
 brew install docker
 
-echo "19. node via linuxbrew"
+echo "16. node via linuxbrew"
 brew install node
 
-echo "20. maven via linuxbrew"
+echo "17. maven via linuxbrew"
 brew install maven
 
 echo ""
@@ -88,7 +88,7 @@ echo "Done"
 echo ""
 
 echo "What to do next?:"
-echo "1. Install jetbrains-toolbox, postman, scid vs. pc"
+echo "1. Install jetbrains-toolbox, postman, scid vs. pc, discord, spotify"
 echo "2. Login to google chrome, spotify, discord, joplin, configure calibre"
 echo "3. Set up all projects you work on on jetbrains' tools"
 echo '4. Do a ":PlugInstall" in neovim'
