@@ -12,8 +12,8 @@ read -p "Where do you want the dotfiles to be?" gitpath
 echo "0. updating system"
 sudo apt update && sudo apt upgrade
 
-echo "1.  git, curl, wget, python3"
-sudo apt install git curl wget python3
+echo "1.  git, wget, python3"
+sudo apt install git wget python3
 
 read -p "What editor do you use?: " editor
 git config --global core.editor "$editor"
