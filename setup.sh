@@ -12,8 +12,8 @@ read -p "Where do you want the dotfiles to be?" gitpath
 echo "0. updating system"
 sudo apt update && sudo apt upgrade
 
-echo "1.  git, curl, wget"
-sudo apt install git curl wget
+echo "1.  git, curl, wget, python3"
+sudo apt install git curl wget python3
 
 read -p "What editor do you use?: " editor
 git config --global core.editor "$editor"
@@ -43,44 +43,57 @@ ln -sf "$gitpath/dotfiles/nvim/init.vim"           ~/.config/nvim/init.vim
 ln -sf "$gitpath/dotfiles/nvim/init.coc.vim"       ~/.config/nvim/init.coc.vim
 ln -sf "$gitpath/dotfiles/nvim/coc-settings.json"  ~/.config/nvim/coc-settings.json
 
-echo "4. guake"
-sudo apt install guake
-echo "4.  chrome"
-sudo apt install google-chrome-stable
-echo "5.  kolourpaint"
-sudo apt install kolourpaint
-echo "6.  gimp"
-sudo apt install gimp
-echo "7.  joplin"
-wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
-echo "8. libreoffice suit"
-sudo apt install libreoffice
-echo "9. sl"
-sudo apt install sl
-echo "10. htop"
-sudo apt install htop
-echo "11. visual studio code"
-sudo apt install code
-echo "12. calibre"
-sudo apt install calibre
-echo "12. steam"
-sudo apt install steam
-echo "13. tmux"
+echo "4. tmux"
 sudo apt install tmux
-echo "14. linuxbrew"
+mkdir -p /home/$USER/.config/tmux/
+git clone https://github.com/wfxr/tmux-power /home/$USER/.config/tmux/tmux-power
+ln -sf "$gitpath/dotfiles/tmux.conf" ~/.tmux.conf
+
+echo "5. libinput-gestures"
+sudo gpasswd -a $USER input
+sudo apt-get install wmctrl xdotool
+sudo apt-get install libinput-tools
+git clone https://github.com/bulletmark/libinput-gestures.git /home/$USER/libinput-gestures
+cd /home/$USER/libinput-gestures
+sudo make install
+libinput-gestures-setup autostart start
+ln -sf $gitpath/dotfiles/libinput-gestures.conf ~/.config/libinput-gestures.conf
+cd ~
+
+
+echo "5. guake"
+sudo apt install guake
+echo "6.  chrome"
+sudo apt install google-chrome-stable
+echo "7.  kolourpaint"
+sudo apt install kolourpaint
+echo "8.  gimp"
+sudo apt install gimp
+echo "9.  joplin"
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+echo "10. libreoffice suit"
+sudo apt install libreoffice
+echo "11. sl"
+sudo apt install sl
+echo "12. htop"
+sudo apt install htop
+echo "13. visual studio code"
+sudo apt install code
+echo "14. calibre"
+sudo apt install calibre
+echo "15. steam"
+sudo apt install steam
+echo "16. linuxbrew"
 
 sudo apt-get install build-essential procps curl file git
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
-
-echo "15. docker via linuxbrew"
+echo "17. docker via linuxbrew"
 brew install docker
-
-echo "16. node via linuxbrew"
+echo "18. node via linuxbrew"
 brew install node
-
-echo "17. maven via linuxbrew"
+echo "19. maven via linuxbrew"
 brew install maven
 
 echo ""
@@ -92,8 +105,10 @@ echo "1. Install jetbrains-toolbox, postman, scid vs. pc, discord, spotify"
 echo "2. Login to google chrome, spotify, discord, joplin, configure calibre"
 echo "3. Set up all projects you work on on jetbrains' tools"
 echo '4. Do a ":PlugInstall" in neovim'
-echo "5. Uninstall preinstalled apps you don't want to have"
-echo "6. Set up the printer"
+echo "5. Make guake and terminal font jetbrains mono"
+echo "6. Uninstall preinstalled apps you don't want to have"
+echo "7. Set up the printer"
+echo "8. Rice the DE"
 
 echo ""
 
@@ -101,6 +116,8 @@ echo "Links:"
 echo "1. https://www.jetbrains.com/toolbox-app/"
 echo "2. https://www.postman.com/downloads/"
 echo "3. http://scidvspc.sourceforge.net/"
+echo "4. https://discord.com/"
+echo "5. https://www.spotify.com/us/download/linux/"
 
 # Lib input gestures
 # scid
