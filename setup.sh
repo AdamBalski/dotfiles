@@ -58,6 +58,8 @@ cd /home/$USER/libinput-gestures
 sudo make install
 libinput-gestures-setup autostart start
 ln -sf $gitpath/dotfiles/libinput-gestures.conf ~/.config/libinput-gestures.conf
+libinput-gestures-setup service
+libinput-gestures-setup autostart
 cd ~
 
 
