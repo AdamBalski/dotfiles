@@ -45,6 +45,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 ### Aliases
+# check for files without javadoc in a java project
+alias javadocs-check="grep -Rc "/\*\*" src/main/java | grep:0"
+
 # pygmentize
 alias ccat="pygmentize -g -O style='native'"
 
