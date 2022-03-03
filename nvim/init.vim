@@ -176,7 +176,7 @@ let g:lightline = { 'colorscheme': 'materia' }
 set noshowmode " Disabled showing mode by nvim
 
 " Conquer of Completion
-source /home/adam/.config/nvim/init.coc.vim
+source ~/.config/nvim/init.coc.vim
 
 " NerdTree
 " Opens on <C-s>
