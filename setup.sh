@@ -85,24 +85,26 @@ echo "14. calibre"
 sudo apt install calibre
 echo "15. steam"
 sudo apt install steam
+echo "16. latex"
+sudo apt install texlive-full
 
-echo "16. linuxbrew"
+echo "17. linuxbrew"
 sudo apt-get install build-essential procps curl file git
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
-echo "17. node via linuxbrew"
+echo "18. node via linuxbrew"
 brew install node
-echo "18. maven via linuxbrew"
+echo "19. maven via linuxbrew"
 brew install maven
-echo "19. discord via flatpak"
+echo "20. discord via flatpak"
 flatpak install flathub com.discordapp.Discord
-echo "20. spotify via flatpak"
+echo "21. spotify via flatpak"
 flatpak install flathub com.spotify.Client
-echo "21. postman via flatpak"
+echo "22. postman via flatpak"
 flatpak install flathub com.getpostman.Postman
 
-echo "22. haskell"
+echo "23. haskell"
 brew install ghc
 brew install cabal-install
 curl -sSL https://get.haskellstack.org/ | sh
