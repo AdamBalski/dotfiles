@@ -77,6 +77,16 @@ Plug 'takac/vim-hardtime'
 " ryanoasis/devicons
 Plug 'ryanoasis/vim-devicons' 
 
+" vim-telescope/telescope.nvim and its dependencies
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
+" neovimhaskell/haskell-vim
+Plug 'neovimhaskell/haskell-vim'
+
 " </plugins>
 call plug#end()
 " </vim-plug>
@@ -124,19 +134,28 @@ set splitright
 """ Keybindings
 " F1 saves (you can save in read-only mode)
 map <F1> :SudaWrite %<CR>
-" F5 runs currently saved version of opened file in python3
+" Run python code, run haskell code
 map <F5> :!python3 %<CR>
-" Go to left tab
+map <F6> :!runghc %<CR>
+" Go to the left tab
 nmap <A-h> :tabprevious<CR>
 imap <A-h> <ESC>:tabprevious<CR>
-" Go to right tab
+" Go to the right tab
 nmap <A-l> :tabnext<CR>
 imap <A-l> <ESC>:tabnext<CR>
+" Go the previous buffer
+nmap <A-k> :bprevious<CR>
+imap <A-k> <ESC>:bprevious<CR>
+" Go the next buffer
+nmap <A-j> :bnext<CR>
+imap <A-j> <ESC>:bnext<CR>
 
 
 """ Plugins' settings
 " Vimtex
 let g:tex_flavor= 'latex'
+set conceallevel=1
+let g:tex_conceal='abdmg'
 autocmd BufWritePost *.tex :!pdftex %
 autocmd BufWritePost *.latex !pdflatex % ; rm %:r.aux %:r.log
 
@@ -207,3 +226,17 @@ let g:list_of_insert_keys = []
 let g:list_of_visual_keys = ["+","-","<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:hardtime_default_on = 1
 let g:hardtime_timeout = 100000
+
+" haskell-vim
+let g:haskell_classic_highlighting = 1
+let g:haskell_indent_if = 3
+let g:haskell_indent_case = 2
+let g:haskell_indent_let = 4
+let g:haskell_indent_where = 6
+let g:haskell_indent_before_where = 2
+let g:haskell_indent_after_bare_where = 2
+let g:haskell_indent_do = 3
+let g:haskell_indent_in = 1
+let g:haskell_indent_guard = 2
+let g:haskell_indent_case_alternative = 1
+let g:cabal_indent_section = 2

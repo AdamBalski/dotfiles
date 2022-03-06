@@ -21,7 +21,7 @@ git config --global core.editor "$editor"
 read -p "What is your username in git?: " username
 git config --global user.name "$username"
 
-echo "What is your email in git?"
+echo "What is your git email?"
 read email
 git config --global user.email "$email"
 
@@ -85,8 +85,8 @@ echo "14. calibre"
 sudo apt install calibre
 echo "15. steam"
 sudo apt install steam
-echo "16. linuxbrew"
 
+echo "16. linuxbrew"
 sudo apt-get install build-essential procps curl file git
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
@@ -95,15 +95,28 @@ echo "17. node via linuxbrew"
 brew install node
 echo "18. maven via linuxbrew"
 brew install maven
+echo "19. discord via flatpak"
+flatpak install flathub com.discordapp.Discord
+echo "20. spotify via flatpak"
+flatpak install flathub com.spotify.Client
+echo "21. postman via flatpak"
+flatpak install flathub com.getpostman.Postman
+
+echo "22. haskell"
+brew install ghc
+brew install cabal-install
+curl -sSL https://get.haskellstack.org/ | sh
+brew install ghcup
+ghcup install hls
 
 echo ""
 echo "Done"
 echo ""
 
 echo "What to do next?:"
-echo "1. Install jetbrains-toolbox, postman, scid vs. pc, discord, spotify"
+echo "1. Install jetbrains-toolbox, scid vs. pc"
 echo "2. Login to google chrome, spotify, discord, joplin, configure calibre"
-echo "3. Set up all projects you work on on jetbrains' tools"
+echo "3. Set up all projects you work on on with jetbrains' tools"
 echo '4. Do a ":PlugInstall" in neovim'
 echo "5. Make guake and terminal font jetbrains mono"
 echo "6. Uninstall preinstalled apps you don't want to have"
@@ -118,7 +131,3 @@ echo "2. https://www.postman.com/downloads/"
 echo "3. http://scidvspc.sourceforge.net/"
 echo "4. https://discord.com/"
 echo "5. https://www.spotify.com/us/download/linux/"
-
-# Lib input gestures
-# scid
-# postman

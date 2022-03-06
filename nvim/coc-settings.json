@@ -17,5 +17,13 @@
     "prettier.stylelintIntegration": true,
     "coc.preferences.enableMarkdown": true,
     "eslint.autoFixOnSave": true,
-    "eslint.format.enable": true
+    "eslint.format.enable": true,
+    "languageserver": {
+        "haskell": {
+            "command": "haskell-language-server-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+            "filetypes": ["haskell", "lhaskell"]
+        }
+    }
 }
