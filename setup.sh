@@ -129,7 +129,4 @@ echo ""
 
 echo "Links:"
 echo "1. https://www.jetbrains.com/toolbox-app/"
-echo "2. https://www.postman.com/downloads/"
-echo "3. http://scidvspc.sourceforge.net/"
-echo "4. https://discord.com/"
-echo "5. https://www.spotify.com/us/download/linux/"
+echo "2. http://scidvspc.sourceforge.net/"
