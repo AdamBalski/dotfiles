@@ -10,15 +10,15 @@ sudo echo "Installing dotfiles for the user $USER"
 read -p "Where do you want the dotfiles to be?" gitpath
 
 echo "0. updating the system and enabling rpm fusion"
-sudo dnf check-update && sudo dnf update
-sudo dnf install \
+sudo dnf -y check-update && sudo dnf update
+sudo dnf -y install \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install \
+sudo dnf -y install \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf check-update && sudo dnf update
+sudo dnf -y check-update && sudo dnf update
 
 echo "1.  git, wget, python3"
-sudo dnf install git wget python3
+sudo dnf -y install git wget python3
 
 read -p "What editor do you use?: " editor
 git config --global core.editor "$editor"
@@ -34,14 +34,14 @@ mkdir -p $gitpath
 git clone https://www.github.com/AdamBalski/dotfiles.git "$gitpath/dotfiles"
 
 echo "2.  zsh" 
-sudo dnf install zsh
+sudo dnf -y install zsh
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 ln -sf "$gitpath/dotfiles/zshrc" ~/.zshrc 
 
 echo "3.  nvim"
-sudo dnf install neovim
+sudo dnf -y install neovim
 mkdir -p ~/.config/nvim/plugged
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ln -sf "$gitpath/dotfiles/nvim/init.vim"           ~/.config/nvim/init.vim
@@ -49,16 +49,17 @@ ln -sf "$gitpath/dotfiles/nvim/init.coc.vim"       ~/.config/nvim/init.coc.vim
 ln -sf "$gitpath/dotfiles/nvim/coc-settings.json"  ~/.config/nvim/coc-settings.json
 
 echo "4. tmux"
-sudo dnf install tmux
+sudo dnf -y install tmux
 mkdir -p /home/$USER/.config/tmux/
 git clone https://github.com/wfxr/tmux-power /home/$USER/.config/tmux/tmux-power
 ln -sf "$gitpath/dotfiles/tmux.conf" ~/.tmux.conf
 
 echo "5. libinput-gestures"
 sudo gpasswd -a $USER input
-sudo dnf install wmctrl xdotool
+sudo dnf -y install wmctrl xdotool
 git clone https://github.com/bulletmark/libinput-gestures.git /home/$USER/libinput-gestures
 cd /home/$USER/libinput-gestures
+sudo dnf -y install make
 sudo make install
 libinput-gestures-setup autostart start
 ln -sf $gitpath/dotfiles/libinput-gestures.conf ~/.config/libinput-gestures.conf
@@ -67,60 +68,63 @@ libinput-gestures-setup autostart
 cd ~
 
 echo "5. guake"
-sudo dnf install guake
+sudo dnf -y install guake
 
 echo "6.  chrome"
-sudo dnf install fedora-workstation-repositories
-sudo dnf config-manager --set-enabled google-chrome
-sudo dnf install google-chrome-stable
+sudo dnf -y install fedora-workstation-repositories
+sudo dnf -y config-manager --set-enabled google-chrome
+sudo dnf -y install google-chrome-stable
 
 echo "7.  kolourpaint"
-sudo dnf install kolourpaint
+sudo dnf -y install kolourpaint
 echo "8.  gimp and inkscape"
-sudo dnf install gimp inkscape
+sudo dnf -y install gimp inkscape
 echo "9.  joplin"
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 echo "10. libreoffice suit"
-sudo dnf install libreoffice
+sudo dnf -y install libreoffice
 echo "11. sl"
-sudo dnf install sl
+sudo dnf -y install sl
 echo "12. htop"
-sudo dnf install htop
+sudo dnf -y install htop
 echo "13. visual studio code"
-sudo dnf install code
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+sudo dnf -y check-update
+sudo dnf -y install code
 echo "14. latex"
-sudo dnf install texlive-scheme-full
+sudo dnf -y install texlive-scheme-full
 echo "15. steam"
-sudo dnf install steam
+sudo dnf -y install steam
 echo "16. node"
-sudo dnf install nodejs
+sudo dnf -y install nodejs
 echo "17. maven"
-sudo dnf install maven
+sudo dnf -y install maven
 echo "18. spotify"
-sudo dnf install lpf-spotify-client
+sudo dnf -y install lpf-spotify-client
 lpf update
 
 echo "19. downloading discord"
 cd ~
 mkdir -p ~/.apps/discord
-wget -c https://discord.com/api/download?platform=linux&format=tar.gz
-mv discord*.tar.gz ~/.apps/discord/discord.tar.gz
+wget -O discord.tar.gz https://discord.com/api/download?platform=linux&format=tar.gz
+mv discord.tar.gz ~/.apps/discord/discord.tar.gz
 cd ~/.apps/discord
-tar -xf discord*.tar.gz
+tar -xf discord.tar.gz
 cd ~
 
 echo "21. downloading postman"
 cd ~
 mkdir -p ~/.apps/postman
-wget -c https://dl.pstmn.io/download/latest/linux64
-mv postman*.tar.gz ~/.apps/postman/postman.tar.gz
+wget -O postman.tar.gz https://dl.pstmn.io/download/latest/linux64
+mv postman.tar.gz ~/.apps/postman/postman.tar.gz
 cd ~/.apps/postman
-tar -xf postman*.tar.gz
+tar -xf postman.tar.gz
 cd ~
 
 echo "22. haskell"
-sudo dnf install stack
-sudo dnf install haskell-platform
+sudo dnf -y install stack
+sudo dnf -y install haskell-platform
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ghcup install hls
 
