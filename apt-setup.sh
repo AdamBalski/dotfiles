@@ -104,6 +104,12 @@ echo "22. spotify via flatpak"
 flatpak install flathub com.spotify.Client
 echo "23. postman via flatpak"
 flatpak install flathub com.getpostman.Postman
+echo "Chrome via flatpak"
+flatpak install flathub com.google.Chrome
+
+echo "Set up the JetbrainsMono fonts"
+sudo cp -a $gitpath/dotfiles/jebtrains-mono-medium-nerd-font.ttf /usr/share/fonts
+fc-cache -f -v
 
 echo ""
 echo "Done"
@@ -113,11 +119,12 @@ echo "What to do next?:"
 echo "1. Install jetbrains-toolbox, scid vs. pc"
 echo "2. Login to google chrome, spotify, discord, joplin, configure calibre"
 echo "3. Set up all projects you work on on with jetbrains' tools"
-echo '4. Do a ":PlugInstall" in neovim'
-echo "5. Make guake and terminal font jetbrains mono"
-echo "6. Uninstall preinstalled apps you don't want to have"
-echo "7. Set up the printer"
-echo "8. Rice the DE"
+echo "4. Make sure which neovim outputs the homebrew dir"
+echo '5. Do a ":PlugInstall" in neovim'
+echo "6. Make guake and terminal font jetbrains mono"
+echo "7. Uninstall preinstalled apps you don't want to have"
+echo "8. Set up the printer"
+echo "9. Rice the DE"
 
 echo ""
 
