@@ -32,11 +32,10 @@ echo "2.  zsh"
 sudo apt install zsh
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
 ln -sf "$gitpath/dotfiles/zshrc" ~/.zshrc 
 
-echo "3.  nvim"
-sudo apt install neovim
+echo "3.  nvim config"
+sudo apt install python3-nvim
 mkdir -p ~/.config/nvim/plugged
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ln -sf "$gitpath/dotfiles/nvim/init.vim"           ~/.config/nvim/init.vim
@@ -93,23 +92,18 @@ sudo apt-get install build-essential procps curl file git
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
-echo "18. node via linuxbrew"
+echo "18. nvim via linuxbrew"
+brew install neovim
+echo "19. node via linuxbrew"
 brew install node
-echo "19. maven via linuxbrew"
+echo "20. maven via linuxbrew"
 brew install maven
-echo "20. discord via flatpak"
+echo "21. discord via flatpak"
 flatpak install flathub com.discordapp.Discord
-echo "21. spotify via flatpak"
+echo "22. spotify via flatpak"
 flatpak install flathub com.spotify.Client
-echo "22. postman via flatpak"
+echo "23. postman via flatpak"
 flatpak install flathub com.getpostman.Postman
-
-echo "23. haskell"
-brew install ghc
-brew install cabal-install
-curl -sSL https://get.haskellstack.org/ | sh
-brew install ghcup
-ghcup install hls
 
 echo ""
 echo "Done"
