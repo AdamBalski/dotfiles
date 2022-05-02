@@ -111,6 +111,12 @@ echo "Set up the JetbrainsMono fonts"
 sudo cp -a $gitpath/dotfiles/jebtrains-mono-medium-nerd-font.ttf /usr/share/fonts
 fc-cache -f -v
 
+echo "Fan control"
+https://github.com/vmatare/thinkfan/issues/45#issuecomment-658830584
+sudo apt install thinkfan
+sudo modprobe -rv thinkpad_acpi
+sudo modprobe -v thinkpad_acpi
+
 echo ""
 echo "Done"
 echo ""
