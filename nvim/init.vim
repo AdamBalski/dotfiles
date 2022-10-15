@@ -38,11 +38,8 @@ Plug 'KabbAmine/vCoolor.vim'
 " Surround
 Plug 'tpope/vim-surround'
 
-" CloseTag
+" alvan/vim-closetag
 Plug 'alvan/vim-closetag'
-
-" Auto-pairs
-Plug 'jiangmiao/auto-pairs'
 
 " Darcula
 Plug 'doums/darcula'
@@ -77,12 +74,12 @@ Plug 'takac/vim-hardtime'
 " ryanoasis/devicons
 Plug 'ryanoasis/vim-devicons' 
 
-" vim-telescope/telescope.nvim and its dependencies
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" " vim-telescope/telescope.nvim and its dependencies
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " neovimhaskell/haskell-vim
 Plug 'neovimhaskell/haskell-vim'

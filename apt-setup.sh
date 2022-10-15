@@ -41,6 +41,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 ln -sf "$gitpath/dotfiles/nvim/init.vim"           ~/.config/nvim/init.vim
 ln -sf "$gitpath/dotfiles/nvim/init.coc.vim"       ~/.config/nvim/init.coc.vim
 ln -sf "$gitpath/dotfiles/nvim/coc-settings.json"  ~/.config/nvim/coc-settings.json
+mkdir ~/.config/nvim/ultisnips
+ln -sf "$gitpath/dotfiles/nvim/ultisnips/*" ~/.config/nvim/ultisnips
 
 echo "4. tmux"
 sudo apt install tmux
@@ -104,7 +106,7 @@ echo "22. spotify via flatpak"
 flatpak install flathub com.spotify.Client
 echo "23. postman via flatpak"
 flatpak install flathub com.getpostman.Postman
-echo "Chrome via flatpak"
+echo "24. Chrome via flatpak"
 flatpak install flathub com.google.Chrome
 
 echo "Set up the JetbrainsMono fonts"
