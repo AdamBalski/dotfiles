@@ -74,13 +74,6 @@ Plug 'takac/vim-hardtime'
 " ryanoasis/devicons
 Plug 'ryanoasis/vim-devicons' 
 
-" " vim-telescope/telescope.nvim and its dependencies
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
 " neovimhaskell/haskell-vim
 Plug 'neovimhaskell/haskell-vim'
 
@@ -119,6 +112,10 @@ function LoadView()
 	normal 0
 endfun
 
+""" ":CdCurrDir<CR>" sets the current working directory to be the directory
+" where the currently edited file is
+command! CdCurrDir :cd %:p:h
+
 """ Splits
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
@@ -126,7 +123,6 @@ nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
 set splitbelow
 set splitright
-
 
 """ Keybindings
 " F1 saves (you can save in read-only mode)
@@ -217,7 +213,6 @@ let g:goyo_width="80%"
 let g:goyo_height="100%"
 
 " HardTime
-set mouse=r
 let g:list_of_normal_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:list_of_insert_keys = []
 let g:list_of_visual_keys = ["+","-","<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
