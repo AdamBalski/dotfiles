@@ -66,26 +66,14 @@ cd ~
 
 echo "5. guake"
 sudo apt install guake
-echo "6.  chrome"
-sudo apt install google-chrome-stable
 echo "7.  kolourpaint"
 sudo apt install kolourpaint
-echo "8.  gimp"
-sudo apt install gimp
 echo "9.  joplin"
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 echo "10. libreoffice suit"
 sudo apt install libreoffice
-echo "11. sl"
-sudo apt install sl
 echo "12. htop"
 sudo apt install htop
-echo "13. visual studio code"
-sudo apt install code
-echo "14. calibre"
-sudo apt install calibre
-echo "15. steam"
-sudo apt install steam
 echo "16. latex"
 sudo apt install texlive-full
 
