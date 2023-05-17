@@ -84,10 +84,15 @@ export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 echo "18. nvim via linuxbrew"
 brew install neovim
+ln -sf "$/home/linuxbrew/.linuxbrew/bin/nvim" "/bin/nvim"
 echo "19. node via linuxbrew"
 brew install node
+ln -sf "$/home/linuxbrew/.linuxbrew/bin/node" "/bin/node"
+ln -sf "$/home/linuxbrew/.linuxbrew/bin/npx" "/bin/npx"
+ln -sf "$/home/linuxbrew/.linuxbrew/bin/npm" "/bin/npm"
 echo "20. maven via linuxbrew"
 brew install maven
+ln -sf "$/home/linuxbrew/.linuxbrew/bin/mvn" "/bin/mvn"
 echo "21. discord via flatpak"
 flatpak install flathub com.discordapp.Discord
 echo "22. spotify via flatpak"

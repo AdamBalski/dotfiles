@@ -30,5 +30,6 @@
     "snippets.ultisnips.directories": ["$HOME/.config/nvim/ultisnips"],
     "snippets.extends": {
         "latex": ["tex"]
-    }
+    },
+    "snippets.ultisnips.pythonPrompt": false
 }
