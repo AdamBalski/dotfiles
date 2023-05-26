@@ -35,7 +35,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ln -sf "$gitpath/dotfiles/zshrc" ~/.zshrc 
 
 echo "3.  nvim config"
-sudo apt install python3-nvim
+sudo apt install python3-neovim
 mkdir -p ~/.config/nvim/plugged
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ln -sf "$gitpath/dotfiles/nvim/init.vim"           ~/.config/nvim/init.vim
