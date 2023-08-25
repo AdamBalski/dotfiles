@@ -101,6 +101,9 @@ echo "23. postman via flatpak"
 flatpak install flathub com.getpostman.Postman
 echo "24. Chrome via flatpak"
 flatpak install flathub com.google.Chrome
+# https://github.com/gillescastel/inkscape-figures
+echo "25. Inkscape-in-latex integration"
+pip3 install inkscape-figures
 
 echo "Set up the JetbrainsMono fonts"
 sudo cp -a $gitpath/dotfiles/jebtrains-mono-medium-nerd-font.ttf /usr/share/fonts

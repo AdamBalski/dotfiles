@@ -144,6 +144,23 @@ nmap <A-j> :bnext<CR>
 imap <A-j> <ESC>:bnext<CR>
 
 
+""" Inkscape-in-latex integration 
+" https://github.com/gillescastel/inkscape-figures
+" requires the following in the latex preamble:
+"TEX# \usepackage{import}
+"TEX# \usepackage{pdfpages}
+"TEX# \usepackage{transparent}
+"TEX# \usepackage{xcolor}
+"TEX# 
+"TEX# \newcommand{\incfig}[2][1]{%
+"TEX#     \def\svgwidth{#1\columnwidth}
+"TEX#     \import{./figures/}{#2.pdf_tex}
+"TEX# }
+"TEX# 
+"TEX# \pdfsuppresswarningpagegroup=1
+inoremap <C-q> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
+nnoremap <C-q> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+
 """ Plugins' settings
 " Vimtex
 let g:tex_flavor= 'latex'
@@ -196,7 +213,7 @@ map <C-s> :NERDTreeToggle<CR>
 " Show line numbers
 let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal relativenumber
-" " Opens automatically when vim is opened on directory
+" Opens automatically when vim is opened on directory
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
