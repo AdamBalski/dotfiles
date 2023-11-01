@@ -82,6 +82,7 @@ alias vim="nvim"
 alias vi="nvim"
 
 # Doesn't match any category
+alias \:q="exit"
 alias processes="ps -aux | grep"
 
 
@@ -91,7 +92,7 @@ alias -s pdf=xreader
 alias -s {jpg,jpeg,png,ico}=pix
 alias -s {md,properties}=vim
 alias -s {odt,docx,doc}=libreoffice
-alias -s {html,css,js,py,java}=vim
+alias -s {tex,latex,md,xml,html,css,js,py,java}=vim
 
 
 ### Exports

@@ -42,7 +42,8 @@ ln -sf "$gitpath/dotfiles/nvim/init.vim"           ~/.config/nvim/init.vim
 ln -sf "$gitpath/dotfiles/nvim/init.coc.vim"       ~/.config/nvim/init.coc.vim
 ln -sf "$gitpath/dotfiles/nvim/coc-settings.json"  ~/.config/nvim/coc-settings.json
 mkdir ~/.config/nvim/ultisnips
-ln -sf "$gitpath/dotfiles/nvim/ultisnips/*" ~/.config/nvim/ultisnips
+ln -sf "$gitpath/dotfiles/nvim/ultisnips/text.snippets" ~/.config/nvim/ultisnips/text.snippets
+ln -sf "$gitpath/dotfiles/nvim/ultisnips/latex.snippets" ~/.config/nvim/ultisnips/latex.snippets
 
 echo "4. tmux"
 sudo apt install tmux

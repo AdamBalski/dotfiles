@@ -18,10 +18,23 @@ snippet template "Basic template" b
 \usepackage{amsmath, amssymb}
 \usepackage[polish]{babel}
 \usepackage{polski} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+
+\newtheorem{definicja}{Definicja}
+\newtheorem{twierdzenie}{Twierdzenie}
+\newtheorem{przyklad}{Na przykład}
+\newtheorem{zadanie}{Zadanie}
 
 \pdfsuppresswarningpagegroup=1
 \pagenumbering{gobble}
 
+\setlength\parindent{0pt}
 \begin{document}
     $0
 \end{document}
@@ -500,11 +513,6 @@ snippet || "mid" iA
 endsnippet
 
 
-context "math()"
-snippet cc "subset" Ai
-\subset 
-endsnippet
-
 snippet notin "not in " iA
 \not\in 
 endsnippet
@@ -515,7 +523,7 @@ snippet inn "in " iA
 endsnippet
 
 snippet NN "n" iA
-\N
+\mathbb{N}
 endsnippet
 
 snippet Nn "cap" iA
@@ -554,7 +562,7 @@ snippet <! "normal" iA
 \triangleleft 
 endsnippet
 
-snippet <> "hokje" iA
+snippet <> "diamond" iA
 \diamond 
 endsnippet
 
@@ -607,6 +615,13 @@ priority 10
 context "math()"
 snippet "hat" "hat" riA
 \hat{$1}$0
+endsnippet
+
+
+priority 10
+context "math()"
+snippet "tilde" "tilde" riA
+\tilde{$1}$0
 endsnippet
 
 priority 100
