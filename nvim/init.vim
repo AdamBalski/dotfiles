@@ -20,8 +20,14 @@ Plug 'tpope/vim-fugitive'
 " lambdalisue/suda.vim
 Plug 'lambdalisue/suda.vim'
 
-" ctrlpvim/ctrlp.vim
-Plug 'ctrlpvim/ctrlp.vim'
+" 'nvim-telescope/telescope.nvim' with dependencies
+Plug 'nvim-lua/plenary.nvim'
+Plug 'BurntSushi/ripgrep'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+
+" nanozuki/tabby.nvim
+Plug 'nanozuki/tabby.nvim'
 
 " Vimtex
 Plug 'lervag/vimtex'
@@ -103,15 +109,6 @@ colorscheme darcula
 """ Automatically sources init.vim after saving
 autocmd BufWritePost init.vim :so %
 
-""" Saves views (folds)
-autocmd BufWinLeave * mkview
-autocmd BufWinEnter * silent! call LoadView()
-function LoadView()
-	loadview
-	normal gg
-	normal 0
-endfun
-
 """ ":CdCurrDir<CR>" sets the current working directory to be the directory
 " where the currently edited file is
 command! CdCurrDir :cd %:p:h
@@ -136,30 +133,15 @@ imap <A-h> <ESC>:tabprevious<CR>
 " Go to the right tab
 nmap <A-l> :tabnext<CR>
 imap <A-l> <ESC>:tabnext<CR>
-" Go the previous buffer
+" Go to the previous buffer
 nmap <A-k> :bprevious<CR>
 imap <A-k> <ESC>:bprevious<CR>
-" Go the next buffer
+" Go to the next buffer
 nmap <A-j> :bnext<CR>
 imap <A-j> <ESC>:bnext<CR>
-
-
-""" Inkscape-in-latex integration 
-" https://github.com/gillescastel/inkscape-figures
-" requires the following in the latex preamble:
-"TEX# \usepackage{import}
-"TEX# \usepackage{pdfpages}
-"TEX# \usepackage{transparent}
-"TEX# \usepackage{xcolor}
-"TEX# 
-"TEX# \newcommand{\incfig}[2][1]{%
-"TEX#     \def\svgwidth{#1\columnwidth}
-"TEX#     \import{./figures/}{#2.pdf_tex}
-"TEX# }
-"TEX# 
-"TEX# \pdfsuppresswarningpagegroup=1
-inoremap <C-q> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
-nnoremap <C-q> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+" New tab
+nmap <C-t> :tabnew<CR>
+imap <C-t> <ESC>:tabnew<CR>
 
 """ Plugins' settings
 " Vimtex
@@ -171,6 +153,7 @@ autocmd BufWritePost *.latex !pdflatex % ; rm %:r.aux %:r.log
 
 " Bbye
 nmap <C-w> :Bdelete<CR>
+imap <C-w> :Bdelete<CR>
 
 " Emmet
 let g:user_emmet_install_global = 1
@@ -228,6 +211,10 @@ vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 map <F10> :Goyo<CR>
 let g:goyo_width="80%"
 let g:goyo_height="100%"
+
+" telescope.nvim
+imap <C-p> <ESC>:Telescope find_files<cr>
+nmap <C-p> :Telescope find_files<cr>
 
 " HardTime
 let g:list_of_normal_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
