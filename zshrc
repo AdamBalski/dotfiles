@@ -85,6 +85,9 @@ alias vi="nvim"
 alias \:q="exit"
 alias processes="ps -aux | grep"
 
+# Taurus(FIIS faculty's server (AGH UST))  healthcheck
+alias taurus-check="nmap -p 22 taurus.fis.agh.edu.pl"
+
 
 ### Filetype(suffix) aliases
 
