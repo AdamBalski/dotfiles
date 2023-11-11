@@ -84,6 +84,7 @@ alias vi="nvim"
 # Doesn't match any category
 alias \:q="exit"
 alias processes="ps -aux | grep"
+alias sizeof="du -ha --max-depth=0"
 
 # Taurus(FIIS faculty's server (AGH UST))  healthcheck
 alias taurus-check="nmap -p 22 taurus.fis.agh.edu.pl"
