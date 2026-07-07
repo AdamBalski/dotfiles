@@ -5,7 +5,8 @@ from typing import Any, Callable
 
 from ..errors import DotsyncError
 from .base import Syncable
-from .files import DirSyncable, FileSyncable, FontFileSyncable
+from .files import DirSyncable, FileSyncable, FontFileSyncable, MacOSPlistSyncable
+from .git import GitRepoSyncable
 from .homebrew import BrewCaskSyncable, BrewCommandSyncable, BrewPackageSyncable, HomebrewSyncable
 
 
@@ -26,6 +27,8 @@ def register_syncable_type(kind: str) -> Callable[[type[Syncable]], type[Syncabl
 
 register_syncable_type("file")(FileSyncable)
 register_syncable_type("dir")(DirSyncable)
+register_syncable_type("macos-plist")(MacOSPlistSyncable)
+register_syncable_type("git-repo")(GitRepoSyncable)
 register_syncable_type("homebrew")(HomebrewSyncable)
 register_syncable_type("brew-package")(BrewPackageSyncable)
 register_syncable_type("brew-cask")(BrewCaskSyncable)

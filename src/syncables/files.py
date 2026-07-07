@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import stat
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -120,3 +121,48 @@ class FontFileSyncable(FileSyncable):
         if before != after:
             self.target.parent.mkdir(parents=True, exist_ok=True)
             os.utime(self.target.parent, None)
+
+
+class MacOSPlistSyncable(FileSyncable):
+    kind = "macos-plist"
+
+    def __init__(
+        self,
+        plugin_name: str,
+        plugin_dir: Path,
+        name: str,
+        source: Path,
+        target: Path,
+        domain: str,
+    ) -> None:
+        super().__init__(plugin_name, plugin_dir, name, source, target)
+        self.domain = domain
+
+    @classmethod
+    def from_form(cls, plugin_name: str, plugin_dir: Path, form: list[Any], file_name: Path) -> "MacOSPlistSyncable":
+        opts = form_options(form, file_name)
+        for required in ("name", "source", "target", "domain"):
+            if required not in opts:
+                raise DotsyncError(f"{file_name}: macos-plist syncable requires ({required} ...)")
+        name = as_string(opts["name"], file_name, "name")
+        source = resolve_path(plugin_dir, as_string(opts["source"], file_name, "source"))
+        target = resolve_path(plugin_dir, as_string(opts["target"], file_name, "target"))
+        domain = as_string(opts["domain"], file_name, "domain")
+        return cls(plugin_name, plugin_dir, name, source, target, domain)
+
+    def apply_config(self) -> None:
+        if not self.source.is_file():
+            raise DotsyncError(f"{self.selector}: missing source file {self.source}")
+        result = subprocess.run(["defaults", "import", self.domain, str(self.source)], text=True, capture_output=True)
+        if result.returncode != 0:
+            details = []
+            if result.stdout.strip():
+                details.append(result.stdout.strip())
+            if result.stderr.strip():
+                details.append(result.stderr.strip())
+            suffix = ""
+            if details:
+                suffix = ":\n" + "\n".join(details)
+            raise DotsyncError(f"{self.selector}: defaults import failed with exit code {result.returncode}{suffix}")
+        atomic_copy_file(self.source, self.target)
+        subprocess.run(["killall", "cfprefsd"], text=True, capture_output=True)
