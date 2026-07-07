@@ -1,0 +1,181 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+export DOTFILES_PATH="$HOME/dotfiles"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+# Homebrew's completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+source $ZSH/oh-my-zsh.sh
+
+### History
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt appendhistory
+
+### Env
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+### Aliases
+
+# ls
+alias l="ls -lA"
+alias la="ls -A"
+alias ll="ls -l"
+
+# Git
+alias gita="git add"
+alias gitaa="git add ."
+alias gitai="git add -i"
+alias gitbwai="git branch | grep '*' | sed 's/^* //'"
+alias gitrbpm="BRANCH=\`gitbwai\`; echo \"Current branch: \$BRANCH\"; git switch main || git switch master; git pull; git switch \$BRANCH; git rebase main || git rebase master"
+alias gitb="git branch"
+# these two create dangling commits, be careful
+alias gitbrm="git branch -D"
+alias gitbmrm='git branch | sed -E "s/..(.*)/\1/" | grep -Ev "^(main|master)$" | xargs git branch -D'
+alias gitbil="git blame"
+alias gitbis="git bisect"
+alias gitbisb="git bisect bad"
+alias gitbisg="git bisect good"
+alias gitbiss="git bisect start"
+alias gitbissd="git bisect start && git bisect bad && git bisect good"
+alias gitc="git commit"
+alias gitca="git commit --amend"
+alias gitcane="git commit --amend --no-edit"
+alias gitcam="git commit --amend -m"
+alias gitch="git checkout"
+alias gitchb="git checkout -b"
+alias gitcm="git commit -m"
+alias gitd="git diff"
+alias gitdc="git diff --cached"
+alias gitds="git diff --stat"
+alias gitdcs="git diff --cached --stat"
+alias gitdlc="git diff HEAD^..HEAD"
+alias gitf="git fetch"
+alias gitfa="git fetch --all"
+alias gitfl="git --no-pager log --graph --oneline -n 20 HEAD origin/\`git branch | grep '*' | sed 's/^* //'\`"
+alias gitl="git --no-pager log --graph --oneline -n 20"
+alias gitll="git --no-pager log --graph --oneline -n 40"
+alias gitlll="git --no-pager log --graph --oneline -n 60"
+alias gitm="git merge"
+alias gitp="git pull"
+alias gitpf="git pull --force"
+alias gitpu="git push"
+alias gitpuf="git push --force-with-lease"
+alias gitpusu="git rev-parse --abbrev-ref HEAD | xargs -I{} git push --set-upstream origin {}"
+alias gitr="git restore"
+alias gitrb="git rebase"
+alias gitrbm="git rebase main || git rebase master"
+alias gitrs="git restore --staged"
+alias gitrestore-all="git restore --staged . && git restore . ; git status" # verbose too avoid accidental firing of this alias
+alias gitrwrt="git rebase -i HEAD~10"
+alias gits="git status"
+alias gitsa="git status --untracked-files=all"
+alias gitst="git stash list"
+alias gitstd="git stash drop"
+alias gitstm="git stash -m"
+alias gitstp="git stash pop"
+alias gitsts="git stash show -p"
+alias gitstsv="git stash save"
+alias gitstsvs="git stash save --staged"
+alias gitsw="git switch"
+alias gitswm="git switch main || git switch master"
+alias gitref="git --no-pager reflog --oneline"
+alias gitref10="git --no-pager reflog --oneline -n 10"
+alias gitref20="git --no-pager reflog --oneline -n 20"
+
+# Vim
+alias vim="nvim"
+
+# Doesn't match any category
+alias \:q="exit"
+alias sizeof="du -ha --max-depth=0"
+alias pgd="git rev-parse --show-prefix" # print git directory
+alias jcurl='curl -H "Accept: application/json"'
+
+# Displays last 10 diffs of the file
+# TODO: maybe export it to a script
+function git-playback() {
+    files="$@"
+    commits=`git log --pretty=format:"%h" -n 10 -- "$files" | tac | tr "\n" " "`
+    for commit in `echo $commits`; do
+        git show "${commit}^..$commit" -- "$files"
+    done
+}
+
+### Exports
+
+# $PATH           #### MY BINS ########
+brewpath=/usr/local/Linuxbrew/bin
+userbins=$HOME/.apps/bin:/home/$USER/bin
+docpath=$HOME/Documents/bin
+localbinpath=$HOME/.local/bin
+
+if command -v go >/dev/null 2>&1; then
+  gopath=$(go env GOPATH)/bin
+else
+  gopath=
+fi
+
+export PATH=$PATH:$brewpath:$userbins:$docpath:$localbinpath:$gopath
+
+if [ -f "$HOME/work/work.zshrc" ]; then
+  source "$HOME/work/work.zshrc"
+fi
+
+function ff() {
+  dir_param=$1
+  override=$2
+
+  dir="."
+  if [ -n "$dir_param" ]; then
+      dir=$dir_param
+  fi
+
+  file=$(find $dir | fzf) || return 0
+
+  if [ -d "$file" ]; then
+    cd "$file" || exit
+    echo "Changed directory to: $file"
+    return
+  fi
+
+  if [ -n "$override" ]; then
+    app=$override
+  else
+    case "${file##*.}" in
+      mp4|mkv|webm) app=mpv ;;
+      txt|md|c|py|sh) app=nvim ;;
+      *)            app=open ;;
+    esac
+  fi
+
+  "$app" "$file"
+}

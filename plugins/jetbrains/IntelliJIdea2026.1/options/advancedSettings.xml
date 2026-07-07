@@ -1,0 +1,13 @@
+<application>
+  <component name="AdvancedSettings">
+    <option name="settings">
+      <map>
+        <entry key="confirm.rerun.with.termination" value="false" />
+        <entry key="floating.codeToolbar.hide" value="true" />
+        <entry key="gateway.wsl.open.projects.natively" value="true" />
+        <entry key="ide.ui.native.file.chooser" value="true" />
+        <entry key="open.devcontainer.projects.natively" value="true" />
+      </map>
+    </option>
+  </component>
+</application>

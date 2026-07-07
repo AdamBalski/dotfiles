@@ -1,48 +1,47 @@
-# my dotfiles
+# dotsync
 
-## for apt users:
-Install curl and run `sh -c "$(curl -fsSL https://raw.githubusercontent.com/AdamBalski/dotfiles/master/apt-setup.sh)"`
+`dotsync` manages this dotfiles checkout through small plugins. Each plugin is a set of
+syncables that can report drift, apply repo config to the device, and record applied state in:
 
+```sh
+~/.local/state/dotsync-9708c2b7-c09d-4c51-b165-631c1d47a9d0
+```
 
-# Custom Neovim keybindings 
-Note: all conquer of completion keybindings, and some other keybindings are not listed
+## Install
 
-## Jumping between screen splits
-`<C-J>` to the bottom (normal mode)
-`<C-K>` to the top (normal mode)
-`<C-L>` to the right (normal mode)
-`<C-H>` to the left (normal mode)
+```sh
+curl -fsSL https://raw.githubusercontent.com/AdamBalski/dotfiles/master/install.sh | bash -s --
+```
 
-## Write with sudo
-`<F1>` (normal mode)
+The installer clones or fast-forwards the repo at `$HOME/dotfiles`, then symlinks
+`$HOME/.local/bin/dotsync` to the checkout. It does not apply any config.
 
-## Run python3 code
-`<F5>` (normal mode)
+Overrides:
 
-## Run haskell code
-`<F6>` (normal mode)
+```sh
+curl -fsSL https://raw.githubusercontent.com/AdamBalski/dotfiles/master/install.sh \
+  | env DOTSYNC_INSTALL_DIR="$HOME/.dotfiles" DOTSYNC_BIN_DIR="$HOME/bin" bash -s --
+```
 
-## Go to the left or to the right tab
-`<A-l>` and `<A-r>` (normal and insert mode)
+## Usage
 
-## Go to the previous or to the next buffer
-`<A-k>` and `<A-j>` (normal and insert mode)
+```sh
+dotsync help
+dotsync ls
+dotsync . status
+dotsync ./nvim status
+dotsync ./nvim apply
+dotsync ./nvim apply --force
+dotsync ./nvim on
+dotsync ./nvim off
+```
 
-## inkscape-figures
-`<C-q> creates a figure named by the current line's content (insert mode)
-`<C-q>` browses through figures, choosing a figure opens inkscape (normal mode)
+Selectors:
 
-## Close buffer (bbye)
-`<C-w>` (normal mode)
+- `.`: all enabled plugins
+- `./<plugin>`: one plugin
+- `./<plugin>/<syncable>`: one syncable inside a plugin
 
-## RGB color picker
-`<F3>` (normal and insert mode)
-
-## NerdTree
-`<C-s>` (normal mode)
-
-## Comment, uncomment (nerd commenter)
-`<C-_>` (normal and selection mode)
-
-## Toggle Goyo view
-`<F10>` (normal mode)
+`apply` blocks if the device differs from the last applied state. Use `apply --force`
+to overwrite the device with the repo config. `on` force-applies the plugin first, then
+marks it enabled.

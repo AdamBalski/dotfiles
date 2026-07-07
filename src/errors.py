@@ -1,0 +1,2 @@
+class DotsyncError(Exception):
+    pass
